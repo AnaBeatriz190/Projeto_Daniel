@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Criar Conta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee", "primary-dark": "#1a8cd8" } } } }
+    </script>
+</head>
+<body class="bg-[#f6f7f8] font-sans">
+    <div class="flex flex-col min-h-screen">
+        <header class="bg-white border-b p-4 flex justify-between items-center px-10">
+            <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
+            </a>
+            <a href="/" class="text-sm font-medium text-slate-600 hover:text-primary">Voltar para Home</a>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center p-6">
+            <div class="bg-white rounded-2xl shadow-xl w-full max-w-[450px] overflow-hidden border">
+                <div class="flex border-b">
+                    <a href="/login" class="flex-1 text-center py-4 text-slate-400 hover:text-slate-600 font-bold transition-all">Login</a>
+                    <div class="flex-1 text-center py-4 border-b-4 border-primary font-bold text-primary">Cadastro</div>
+                </div>
+                <div class="p-8">
+                    <h1 class="text-2xl font-bold text-center mb-2">Seja um Herói!</h1>
+                    <form action="/cadastro" method="POST" class="flex flex-col gap-4">
+                        <input type="text" name="nome" class="rounded-xl border-slate-200 h-12 px-4" placeholder="Nome Completo" required>
+                        <input type="email" name="email" class="rounded-xl border-slate-200 h-12 px-4" placeholder="E-mail" required>
+                        <input type="password" name="senha" class="rounded-xl border-slate-200 h-12 px-4" placeholder="Senha" required>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white h-12 rounded-xl font-bold transition-all mt-4">Criar Conta</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

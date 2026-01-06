@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Painel do Protetor</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b9dee",
+                        "secondary": "#fb923c",
+                        "background-dashboard": "#f8fafc",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: { "display": ["Plus Jakarta Sans", "sans-serif"] },
+                    borderRadius: { "xl": "1rem", "2xl": "1.5rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-[#f1f5f9] text-slate-900 font-display">
+<div class="min-h-screen flex flex-col">
+    
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-all">
+                    <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                        <span class="material-symbols-outlined text-2xl">pets</span>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight">PetHero</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-semibold text-primary" href="/dashboard">Meus Pets</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Pedidos de Adoção</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Mensagens</a>
+                    <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Perfil</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="/reportar" class="hidden sm:flex items-center h-10 px-4 bg-primary hover:bg-blue-600 text-white text-sm font-bold rounded-xl transition-all gap-2 shadow-lg shadow-blue-500/20">
+                        <span class="material-symbols-outlined text-[20px]">add</span>
+                        <span>Cadastrar Pet</span>
+                    </a>
+                    <div class="relative w-10 h-10 rounded-full border-2 border-primary/20 bg-cover bg-center cursor-pointer" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100');">
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight">Painel do Protetor</h1>
+                <p class="text-slate-500 mt-1">Bem-vindo de volta, Ana! Você tem <span class="text-secondary font-bold">3 novos pedidos</span> hoje.</p>
+            </div>
+            <button class="flex items-center justify-center h-10 px-4 bg-white border border-slate-200 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition-all gap-2">
+                <span class="material-symbols-outlined text-[20px]">download</span>
+                <span>Relatórios</span>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start justify-between">
+                <div><p class="text-sm font-medium text-slate-500">Total de Pets</p><h3 class="text-3xl font-bold mt-2">42</h3></div>
+                <div class="p-3 bg-blue-50 rounded-xl text-primary"><span class="material-symbols-outlined">pets</span></div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500">Em Adoção</p><h3 class="text-3xl font-bold mt-2">12</h3>
+                    <p class="text-xs text-green-600 font-medium mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span> +2 essa semana</p>
+                </div>
+                <div class="p-3 bg-green-50 rounded-xl text-green-600"><span class="material-symbols-outlined">volunteer_activism</span></div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start justify-between">
+                <div><p class="text-sm font-medium text-slate-500">Adotados</p><h3 class="text-3xl font-bold mt-2">27</h3></div>
+                <div class="p-3 bg-purple-50 rounded-xl text-purple-600"><span class="material-symbols-outlined">home</span></div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-orange-100 flex items-start justify-between relative overflow-hidden">
+                <div class="relative z-10">
+                    <p class="text-sm font-medium text-slate-500">Pedidos Pendentes</p><h3 class="text-3xl font-bold text-secondary mt-2">3</h3>
+                    <p class="text-xs text-secondary font-medium mt-1">Requer atenção</p>
+                </div>
+                <div class="p-3 bg-orange-50 rounded-xl text-secondary"><span class="material-symbols-outlined">notifications_active</span></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Pedidos de Adoção Recentes</h2>
+                    <a class="text-sm font-semibold text-primary hover:underline flex items-center gap-1" href="#">Ver todos <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 border-b border-slate-100">
+                            <tr>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Interessado</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Pet</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Data</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700">Status</th>
+                                <th class="px-6 py-4 font-semibold text-slate-700 text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-slate-200"></div><span class="font-medium">Sarah Costa</span></td>
+                                <td class="px-6 py-4 text-slate-600">Paçoca</td>
+                                <td class="px-6 py-4 text-slate-500 text-xs">12 Out, 2023</td>
+                                <td class="px-6 py-4"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-orange-600 uppercase">Pendente</span></td>
+                                <td class="px-6 py-4 text-right flex justify-end gap-2"><span class="material-symbols-outlined text-slate-300 cursor-pointer hover:text-primary">visibility</span><span class="material-symbols-outlined text-slate-300 cursor-pointer hover:text-green-500">check_circle</span></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Mensagens</h2>
+                    <span class="material-symbols-outlined text-slate-400">mark_chat_unread</span>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 space-y-4">
+                    <div class="flex gap-3 pb-3 border-b border-slate-50">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 flex-shrink-0"></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between"><h4 class="text-sm font-semibold truncate">João Pedro</h4><span class="text-[10px] text-slate-400">10min</span></div>
+                            <p class="text-xs text-slate-500 truncate">Olá, o Paçoca se dá bem com gatos?</p>
+                        </div>
+                    </div>
+                    <button class="w-full text-sm font-bold text-primary py-2 hover:underline transition-all">Ver todas as mensagens</button>
+                </div>
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border border-orange-200/50">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-white rounded-lg text-orange-500 shadow-sm"><span class="material-symbols-outlined">lightbulb</span></div>
+                        <div><h4 class="font-bold text-slate-900 mb-1">Dica do PetHero</h4><p class="text-xs text-slate-600 leading-relaxed">Boas fotos aumentam em até 70% as chances de adoção.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold">Meus Pets Cadastrados</h2>
+                <div class="flex gap-2">
+                    <button class="p-2 text-slate-400 bg-white rounded-lg border border-slate-200 hover:text-primary transition-all"><span class="material-symbols-outlined text-[20px]">filter_list</span></button>
+                    <button class="p-2 text-slate-400 bg-white rounded-lg border border-slate-200 hover:text-primary transition-all"><span class="material-symbols-outlined text-[20px]">grid_view</span></button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div class="relative aspect-square">
+                        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=500" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                        <span class="absolute top-3 right-3 px-2 py-1 rounded-lg text-[10px] font-bold bg-white/90 shadow-sm backdrop-blur-sm">CÃO</span>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 rounded-lg text-[10px] font-bold bg-green-500 text-white shadow-sm">DISPONÍVEL</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div><h3 class="text-lg font-bold">Paçoca</h3><p class="text-[10px] text-slate-500 uppercase font-bold">Macho • 2 anos</p></div>
+                            <span class="material-symbols-outlined text-slate-300">more_vert</span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-slate-50 flex items-center gap-2 text-[10px] text-slate-400 font-medium">
+                            <span class="material-symbols-outlined text-[14px]">calendar_month</span> Cadastrado há 2 semanas
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2 text-primary"><span class="material-symbols-outlined text-2xl">pets</span><span class="text-xl font-bold text-slate-900">PetHero</span></div>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">© 2026 PetHero - JG INFORMÁTICA</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
