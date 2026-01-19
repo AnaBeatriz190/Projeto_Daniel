@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Sobre Nós</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b9dee",
+                        "primary-dark": "#1a7bc0",
+                        "secondary": "#FF9F43",
+                        "background-light": "#f6f7f8",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: { "display": ["Plus Jakarta Sans", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: "Plus Jakarta Sans", sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900">
+<div class="flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 px-4 md:px-10 py-3">
+        <div class="flex items-center justify-between mx-auto max-w-7xl">
+            <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
+                <div class="size-10 bg-primary/10 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">pets</span>
+                </div>
+                <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900">PetHero</h2>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-slate-600 hover:text-primary font-medium text-sm transition-colors" href="/">Home</a>
+                <a class="text-slate-600 hover:text-primary font-medium text-sm transition-colors" href="/reportar">Reportar</a>
+                <a class="text-primary font-bold text-sm" href="/sobre">Sobre</a>
+            </nav>
+            <a href="/login" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg text-sm font-bold transition-all shadow-md shadow-primary/20">Login / Cadastrar</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">Nossa História</span>
+                    <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-tight">Conectando corações e salvando vidas.</h1>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        O PetHero nasceu da necessidade de centralizar o esforço de milhares de protetores independentes. Acreditamos que a tecnologia pode ser a ponte entre o abandono e um novo lar amoroso.
+                    </p>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1000" class="rounded-[2.5rem] shadow-2xl" alt="Pet Amor">
+                    <div class="absolute -bottom-6 -left-6 bg-secondary p-6 rounded-3xl shadow-xl hidden md:block">
+                        <p class="text-white font-black text-2xl">+5000</p>
+                        <p class="text-white/80 text-xs font-bold uppercase">Animais Ajudados</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-background-light">
+            <div class="max-w-7xl mx-auto px-4 md:px-10">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900">Por que o PetHero?</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                        <div class="size-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">map</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Agilidade no Resgate</h3>
+                        <p class="text-slate-500 text-sm">Uso de geolocalização precisa para que protetores encontrem animais em risco no menor tempo possível.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                        <div class="size-12 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">verified_user</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Segurança</h3>
+                        <p class="text-slate-500 text-sm">Monitoramento de processos de adoção para garantir que cada animal vá para um lar responsável.</p>
+                    </div>
+                    <div class="bg-slate-900 p-8 rounded-3xl shadow-xl space-y-4">
+                        <div class="size-12 bg-white/10 text-white rounded-2xl flex items-center justify-center">
+                            <span class="material-symbols-outlined">school</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Projeto Acadêmico</h3>
+                        <p class="text-slate-400 text-sm">Desenvolvido pela aluna <strong>Ana Beatriz</strong> como parte da avaliação prática da disciplina Padrões de Projeto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 md:px-10 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">pets</span>
+                <span class="text-xl font-bold text-slate-900">PetHero</span>
+            </div>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Voluntariar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee", "primary-dark": "#1a8cd8" } } } }
+    </script>
+</head>
+<body class="bg-[#f6f7f8] font-sans antialiased">
+    <header class="sticky top-0 z-50 flex items-center justify-between border-b bg-white/80 backdrop-blur-md px-10 py-4">
+        <a href="/" class="flex items-center gap-3">
+            <div class="size-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">pets</span>
+            </div>
+            <h2 class="text-xl font-bold">PetHero</h2>
+        </a>
+        <a href="/" class="text-sm font-bold text-primary">Voltar para Home</a>
+    </header>
+
+    <main class="max-w-[700px] mx-auto py-12 px-6">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-black mb-3">Seja um Herói</h1>
+            <p class="text-slate-500 text-lg">Junte-se à nossa rede de voluntários e ajude a salvar vidas.</p>
+        </div>
+
+        <form action="/voluntariar" method="POST" class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <label class="text-sm font-bold ml-1">Nome Completo</label>
+                    <input type="text" name="nome" class="w-full h-12 rounded-xl border-slate-200 bg-slate-50 px-4" required>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-sm font-bold ml-1">WhatsApp</label>
+                    <input type="tel" name="whatsapp" class="w-full h-12 rounded-xl border-slate-200 bg-slate-50 px-4" required>
+                </div>
+            </div>
+            
+            <div class="space-y-1">
+                <label class="text-sm font-bold ml-1">E-mail</label>
+                <input type="email" name="email" class="w-full h-12 rounded-xl border-slate-200 bg-slate-50 px-4" required>
+            </div>
+
+            <div class="space-y-3">
+                <label class="text-sm font-bold ml-1">Como você pode ajudar?</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition-all">
+                        <input type="checkbox" name="tipo" value="lar"> Lar Temporário
+                    </label>
+                    <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition-all">
+                        <input type="checkbox" name="tipo" value="resgate"> Apoio em Resgates
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full h-14 bg-primary hover:bg-primary-dark text-white rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 transition-all">
+                Enviar Candidatura
+            </button>
+        </form>
+    </main>
+</body>
+</html>
