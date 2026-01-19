@@ -57,6 +57,14 @@ def doar():
         return redirect(url_for('doar'))
     return render_template('doar.html')
 
+@app.route('/recuperar', methods=['GET', 'POST'])
+def recuperar():
+    if request.method == 'POST':
+        # Simula o envio
+        flash("Se o e-mail estiver cadastrado, você receberá um link em breve!")
+        return redirect(url_for('login'))
+    return render_template('recuperar.html')
+
 @app.route('/reportar', methods=['GET', 'POST'])
 def reportar(): return render_template('reportar.html')
 @app.route('/dashboard')
@@ -67,6 +75,7 @@ def sobre(): return render_template('sobre.html')
 def login(): return render_template('login.html')
 @app.route('/cadastro')
 def cadastro(): return render_template('cadastro.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

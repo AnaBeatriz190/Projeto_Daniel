@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Recuperar Senha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee", "primary-dark": "#1a8cd8" } } } }
+    </script>
+</head>
+<body class="bg-[#f6f7f8] font-sans antialiased text-slate-900">
+    <div class="flex flex-col min-h-screen">
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b px-10 py-3 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
+            </a>
+            <a href="/login" class="text-sm font-bold text-slate-500 hover:text-primary transition-all">Voltar para Login</a>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center p-6">
+            <div class="bg-white rounded-[2.5rem] shadow-xl w-full max-w-[450px] border border-slate-100 p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <div class="size-16 bg-blue-50 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-4xl">lock_reset</span>
+                    </div>
+                    <h1 class="text-3xl font-black mb-2">Esqueceu a senha?</h1>
+                    <p class="text-slate-500 text-sm">Insira seu e-mail abaixo e enviaremos um link para você criar uma nova senha.</p>
+                </div>
+
+                <form action="/recuperar" method="POST" class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail Cadastrado</label>
+                        <input type="email" name="email" required 
+                               class="rounded-2xl border-slate-200 h-14 px-5 focus:ring-primary focus:border-primary bg-slate-50" 
+                               placeholder="seu@email.com">
+                    </div>
+
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white h-16 rounded-2xl font-black shadow-xl shadow-primary/20 transition-all mt-4 uppercase text-sm tracking-widest">
+                        Enviar Link
+                    </button>
+                </form>
+
+                <div class="mt-10 pt-8 border-t border-slate-50 text-center">
+                    <p class="text-sm text-slate-500">Lembrou a senha? <br>
+                        <a href="/login" class="text-primary font-bold hover:underline">Faça login aqui</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+            <div class="max-w-7xl mx-auto px-4 md:px-10 text-center">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">pets</span>
+                    <span class="text-xl font-bold text-slate-900">PetHero</span>
+                </div>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
