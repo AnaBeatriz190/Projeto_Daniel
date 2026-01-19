@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Mensagens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee" } } } }</script>
+</head>
+<body class="bg-[#f1f5f9] font-sans h-screen flex flex-col">
+    <header class="bg-white border-b px-10 py-4 flex items-center gap-4">
+        <a href="/dashboard" class="material-symbols-outlined text-slate-400">arrow_back</a>
+        <h1 class="text-xl font-bold">Conversas</h1>
+    </header>
+
+    <div class="flex-grow flex overflow-hidden">
+        <aside class="w-full md:w-80 bg-white border-r overflow-y-auto">
+            {% for msg in mensagens %}
+            <div class="p-5 border-b hover:bg-slate-50 cursor-pointer transition-all border-l-4 border-transparent hover:border-primary">
+                <div class="flex justify-between mb-1">
+                    <h4 class="font-bold text-sm">{{ msg.remetente }}</h4>
+                    <span class="text-[10px] text-slate-400">{{ msg.tempo }}</span>
+                </div>
+                <p class="text-xs text-slate-500 truncate">{{ msg.conteudo }}</p>
+            </div>
+            {% endfor %}
+        </aside>
+
+        <main class="hidden md:flex flex-1 bg-slate-50 flex-col">
+            <div class="flex-grow p-10 flex flex-col justify-end space-y-4">
+                <div class="bg-white p-4 rounded-2xl rounded-bl-none shadow-sm max-w-md border border-slate-100">
+                    <p class="text-sm">Olá, Ana! Vi o Paçoca no site e me apaixonei. Ele já foi adotado?</p>
+                </div>
+                <div class="bg-primary text-white p-4 rounded-2xl rounded-br-none shadow-sm max-w-md self-end">
+                    <p class="text-sm">Olá! Ele ainda está disponível. Você já teve experiência com cães antes?</p>
+                </div>
+            </div>
+            <div class="p-6 bg-white border-t">
+                <div class="flex gap-4">
+                    <input type="text" class="flex-1 border-none bg-slate-100 rounded-xl px-4" placeholder="Escreva sua mensagem...">
+                    <button class="bg-primary text-white size-12 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

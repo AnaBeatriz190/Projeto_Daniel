@@ -73,7 +73,7 @@
             {% for pet in pets %}
             <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div class="relative aspect-[4/3] overflow-hidden">
-                    <img src="{{ pet.foto }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ pet.nome }}" 
+                    <img src="{{ pet.foto if pet.foto else 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=500' }}" 
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute top-3 left-3 bg-white/90 px-2.5 py-1 rounded-lg text-[10px] font-bold text-slate-800 flex items-center gap-1 z-10 shadow-sm uppercase">
                         <span class="material-symbols-outlined text-sm text-primary">pets</span> {{ pet.especie }}
@@ -109,12 +109,14 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 py-12 text-center">
-        <div class="flex items-center justify-center gap-2 mb-4">
-            <span class="material-symbols-outlined text-primary text-3xl">pets</span>
-            <span class="text-xl font-bold text-slate-900">PetHero</span>
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-7xl mx-auto px-10 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2 text-primary font-bold">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <span class="text-xl text-slate-900">PetHero</span>
+            </div>
+            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 PetHero - JG INFORMÁTICA</p>
         </div>
-        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
     </footer>
 </body>
 </html>

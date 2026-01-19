@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Meu Perfil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee", "secondary": "#fb923c" } } } }</script>
+</head>
+<body class="bg-[#f1f5f9] font-sans antialiased">
+    <header class="bg-white border-b px-10 py-4 flex items-center gap-4 sticky top-0 z-50">
+        <a href="/dashboard" class="flex items-center gap-2 text-slate-500 hover:text-primary transition-all font-bold">
+            <span class="material-symbols-outlined">arrow_back</span> Voltar ao Painel
+        </a>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-12 px-6">
+        <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-100">
+            <div class="h-48 bg-gradient-to-r from-primary to-blue-400 relative">
+                <div class="absolute -bottom-12 left-10 size-32 rounded-[2rem] border-4 border-white bg-cover bg-center shadow-2xl" 
+                     style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400');">
+                </div>
+            </div>
+
+            <div class="pt-20 p-10 space-y-8">
+                <div>
+                    <h1 class="text-4xl font-black text-slate-900 mb-2">{{ user.nome }}</h1>
+                    <p class="text-slate-500 font-bold flex items-center gap-2 bg-slate-50 inline-flex px-3 py-1 rounded-lg">
+                        <span class="material-symbols-outlined text-primary">location_on</span> {{ user.localizacao }}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                        <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Vidas Salvas</p>
+                        <p class="text-4xl font-black text-primary flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">pets</span> {{ user.pets_resgatados }}
+                        </p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                        <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Adoções este mês</p>
+                        <p class="text-4xl font-black text-green-600 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">volunteer_activism</span> 12
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                    <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">format_quote</span> Sobre mim
+                    </h3>
+                    <p class="text-slate-700 leading-relaxed font-medium">{{ user.bio }}</p>
+                </div>
+
+                <div class="pt-6 flex gap-4">
+                    <button class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-lg shadow-primary/20 transition-all flex-1 md:flex-none flex justify-center items-center gap-2">
+                        <span class="material-symbols-outlined">edit</span> Editar Perfil
+                    </button>
+                    <button class="border-2 border-slate-200 hover:border-slate-300 px-8 py-4 rounded-2xl font-bold text-sm text-slate-600 transition-all flex-1 md:flex-none flex justify-center items-center gap-2">
+                        <span class="material-symbols-outlined">settings</span> Configurações
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PetHero - Pedidos de Adoção</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { "primary": "#2b9dee", "secondary": "#fb923c" } } } }</script>
+</head>
+<body class="bg-[#f1f5f9] font-sans antialiased">
+    <header class="bg-white border-b sticky top-0 z-50 px-10 py-4 flex justify-between items-center">
+        <a href="/dashboard" class="flex items-center gap-3 font-bold text-slate-900">
+            <span class="material-symbols-outlined text-primary">arrow_back</span> Pedidos de Adoção
+        </a>
+        <div class="bg-orange-50 text-secondary px-4 py-1 rounded-full text-[10px] font-black uppercase">Fila de Espera</div>
+    </header>
+
+    <main class="max-w-5xl mx-auto py-10 px-6 space-y-6">
+        {% for pedido in pedidos %}
+        <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-5">
+                <div class="size-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400">
+                    <span class="material-symbols-outlined text-3xl">person</span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-black text-slate-900">{{ pedido.interessado }}</h3>
+                    <p class="text-slate-500 text-sm">Interessado(a) em: <span class="text-primary font-bold">{{ pedido.pet_nome }}</span></p>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">{{ pedido.data }}</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span class="px-4 py-2 rounded-xl text-xs font-bold {{ 'bg-orange-50 text-orange-600' if pedido.status == 'PENDENTE' else 'bg-green-50 text-green-600' }}">
+                    {{ pedido.status }}
+                </span>
+                <a href="/concluir_pedido/{{ pedido.id }}" class="bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all">Aprovar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>
