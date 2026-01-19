@@ -9,13 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
+    <script id="tailwind-config">
         tailwind.config = {
-            theme: { extend: { colors: { "primary": "#2b9dee", "secondary": "#fb923c" } } }
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b9dee",
+                        "secondary": "#fb923c",
+                    },
+                    fontFamily: { "display": ["Plus Jakarta Sans", "sans-serif"] },
+                },
+            },
         }
     </script>
     <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-[#f1f5f9] text-slate-900 font-display">
@@ -24,12 +33,10 @@
     <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-all">
-                    <div class="bg-primary/10 p-2 rounded-lg text-primary">
-                        <span class="material-symbols-outlined text-2xl">pets</span>
-                    </div>
-                    <span class="text-xl font-bold tracking-tight">PetHero</span>
-                </a>
+        <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
+            <span class="material-symbols-outlined text-3xl">pets</span>
+            <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
+        </a>
                 <nav class="hidden md:flex items-center gap-8">
                     <a class="text-sm font-semibold text-primary" href="/dashboard">Meus Pets</a>
                     <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="/pedidos">Pedidos de Adoção</a>
@@ -41,7 +48,7 @@
                         <span class="material-symbols-outlined text-[20px]">add</span>
                         <span>Cadastrar Pet</span>
                     </a>
-                    <a href="/perfil" class="relative w-10 h-10 rounded-full border-2 border-primary/20 bg-cover bg-center cursor-pointer hover:ring-2 ring-primary transition-all" 
+                    <a href="/perfil" class="relative w-10 h-10 rounded-full border-2 border-primary/20 bg-cover bg-center cursor-pointer" 
                          style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200');">
                         <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
                     </a>
@@ -55,13 +62,11 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <h1 class="text-3xl font-extrabold tracking-tight">Painel do Protetor</h1>
-                <p class="text-slate-500 mt-1">Bem-vinda de volta, Ana! Você tem <span class="text-secondary font-bold">{{ pendentes }} pedidos pendentes</span>.</p>
+                <p class="text-slate-500 mt-1">Bem-vinda de volta, Ana! Você tem <span class="text-secondary font-bold">{{ pendentes }} pedidos pendentes</span> hoje.</p>
             </div>
-            
             {% with messages = get_flashed_messages(category_filter=["dashboard"]) %}
               {% if messages %}
-                <div class="bg-blue-50 text-primary font-bold px-4 py-2 rounded-xl border border-blue-100 text-sm flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">info</span>
+                <div class="bg-blue-50 text-primary font-bold px-4 py-2 rounded-xl border border-blue-100 text-sm">
                     {{ messages[0] }}
                 </div>
               {% endif %}
@@ -74,7 +79,7 @@
                 <div class="p-3 bg-blue-50 rounded-xl text-primary"><span class="material-symbols-outlined">pets</span></div>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start justify-between">
-                <div><p class="text-sm font-medium text-slate-500">Disponíveis</p><h3 class="text-3xl font-bold mt-2 text-green-600">{{ em_adocao }}</h3></div>
+                <div><p class="text-sm font-medium text-slate-500">Em Adoção</p><h3 class="text-3xl font-bold mt-2 text-green-600">{{ em_adocao }}</h3></div>
                 <div class="p-3 bg-green-50 rounded-xl text-green-600"><span class="material-symbols-outlined">volunteer_activism</span></div>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start justify-between">
@@ -93,7 +98,7 @@
             <div class="lg:col-span-2 space-y-6">
                 <div class="flex items-center justify-between">
                     <h2 class="text-xl font-bold">Pedidos de Adoção Recentes</h2>
-                    <a href="/pedidos" class="text-sm font-bold text-primary hover:underline">Ver todos</a>
+                    <a class="text-sm font-semibold text-primary hover:underline flex items-center gap-1" href="/pedidos">Ver todos <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
                 </div>
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                     <table class="w-full text-left text-sm">
@@ -108,21 +113,21 @@
                         <tbody class="divide-y divide-slate-100">
                             {% for pedido in pedidos %}
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-6 py-4 font-medium">{{ pedido.interessado }}</td>
+                                <td class="px-6 py-4 flex items-center gap-3"><span class="font-medium">{{ pedido.interessado }}</span></td>
                                 <td class="px-6 py-4 text-slate-600">{{ pedido.pet_nome }}</td>
                                 <td class="px-6 py-4">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase {{ 'bg-orange-100 text-orange-600' if pedido.status == 'PENDENTE' else 'bg-green-100 text-green-600' }}">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase {{ 'bg-orange-50 text-orange-600' if pedido.status.strip().upper() == 'PENDENTE' else 'bg-green-50 text-green-600' }}">
                                         {{ pedido.status }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-right flex justify-end gap-2">
-                                    {% if pedido.status == 'PENDENTE' %}
-                                        <a href="/mudar_status_pedido/{{ pedido.id }}/concluido" class="text-slate-300 hover:text-green-500" title="Concluir Pedido">
-                                            <span class="material-symbols-outlined">check_circle</span>
+                                    {% if pedido.status.strip().upper() == 'PENDENTE' %}
+                                        <a href="/mudar_status_pedido/{{ pedido.id }}/concluido" title="Marcar como Concluído">
+                                            <span class="material-symbols-outlined text-slate-300 hover:text-green-500">check_circle</span>
                                         </a>
                                     {% else %}
-                                        <a href="/mudar_status_pedido/{{ pedido.id }}/pendente" class="text-orange-400 hover:text-orange-600" title="Reabrir Pedido">
-                                            <span class="material-symbols-outlined">undo</span>
+                                        <a href="/mudar_status_pedido/{{ pedido.id }}/pendente" title="Desmarcar / Reabrir">
+                                            <span class="material-symbols-outlined text-orange-400 hover:text-orange-600">undo</span>
                                         </a>
                                     {% endif %}
                                 </td>
@@ -134,55 +139,59 @@
             </div>
 
             <div class="space-y-6">
-                <h2 class="text-xl font-bold">Mensagens Recentes</h2>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Mensagens</h2>
+                    <span class="material-symbols-outlined text-slate-400">mark_chat_unread</span>
+                </div>
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 space-y-4">
                     {% for msg in mensagens %}
                     <div class="flex gap-3 pb-3 border-b border-slate-50 last:border-0">
-                        <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-slate-400">person</span>
+                        <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                            <span class="material-symbols-outlined">person</span>
                         </div>
                         <div class="flex-1 min-w-0">
                             <div class="flex justify-between"><h4 class="text-sm font-semibold truncate">{{ msg.remetente }}</h4><span class="text-[10px] text-slate-400">{{ msg.tempo }}</span></div>
                             <p class="text-xs text-slate-500 truncate">{{ msg.conteudo }}</p>
                         </div>
                     </div>
-                    {% else %}
-                    <p class="text-sm text-slate-500 text-center py-4">Nenhuma mensagem nova.</p>
                     {% endfor %}
-                    <a href="/mensagens" class="block w-full text-center text-sm font-bold text-primary py-2 hover:underline border-t pt-4">Ver todas as mensagens</a>
+                    <a href="/mensagens" class="w-full block text-center text-sm font-bold text-primary py-2 hover:underline transition-all">Ver todas</a>
                 </div>
             </div>
         </div>
 
         <div class="space-y-6">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-bold">Meus Pets Cadastrados</h2>
-            </div>
+            <h2 class="text-xl font-bold">Meus Pets Cadastrados</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {% for pet in meus_pets %}
                 <div class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300">
                     <div class="relative aspect-square">
                         <img src="{{ pet.foto }}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                        
                         <span class="absolute bottom-3 left-3 px-3 py-1 rounded-lg text-[10px] font-black uppercase shadow-md
-                            {% if pet.status.strip().upper() == 'DISPONÍVEL' %}
+                            {% if pet.status.strip().upper() == 'DISPONIVEL' %}
                                 bg-green-500 text-white
                             {% else %}
                                 bg-purple-600 text-white
                             {% endif %}">
-                            {{ pet.status }}
+                            {{ "DISPONÍVEL" if pet.status.strip().upper() == "DISPONIVEL" else "ADOTADO" }}
                         </span>
                     </div>
                     <div class="p-5">
-                        <h3 class="text-lg font-black">{{ pet.nome }}</h3>
-                        <p class="text-[10px] text-slate-500 uppercase font-bold">{{ pet.especie }} • {{ pet.idade }} ANOS</p>
-                        <div class="mt-4 pt-4 border-t flex justify-between">
-                            {% if pet.status.strip().upper() == 'DISPONÍVEL' %}
+                        <div class="flex justify-between items-start mb-2">
+                            <div><h3 class="text-lg font-bold">{{ pet.nome }}</h3><p class="text-[10px] text-slate-500 uppercase font-bold">{{ pet.cor }} • {{ pet.idade }} anos</p></div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
+                            {% if pet.status.strip().upper() == 'DISPONIVEL' %}
                                 <a href="/mudar_status_pet/{{ pet.id }}/adotado" class="text-[10px] text-primary font-black hover:underline flex items-center gap-1 uppercase tracking-wider">
-                                    <span class="material-symbols-outlined text-[14px]">check_circle</span> Marcar Adotado
+                                    <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Marcar Adotado
                                 </a>
                             {% else %}
                                 <a href="/mudar_status_pet/{{ pet.id }}/disponivel" class="text-[10px] text-orange-500 font-black hover:underline flex items-center gap-1 uppercase tracking-wider">
-                                    <span class="material-symbols-outlined text-[14px]">undo</span> Desmarcar Adotado
+                                    <span class="material-symbols-outlined text-[14px]">undo</span>
+                                    Desmarcar
                                 </a>
                             {% endif %}
                         </div>
@@ -192,14 +201,13 @@
             </div>
         </div>
     </main>
-
     <footer class="bg-white border-t border-slate-100 py-12">
-        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-2 text-primary">
-                <span class="material-symbols-outlined text-2xl">pets</span>
-                <span class="text-xl font-bold text-slate-900">PetHero</span>
+        <div class="max-w-7xl mx-auto px-10 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2 text-primary font-bold">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <span class="text-xl text-slate-900">PetHero</span>
             </div>
-            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">© 2026 PetHero</p>
+            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 PetHero</p>
         </div>
     </footer>
 </div>

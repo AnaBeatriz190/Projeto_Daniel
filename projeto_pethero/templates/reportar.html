@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html class="light" lang="pt-BR">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PetHero - Reportar Animal</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -28,178 +31,247 @@
         }
     </script>
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        textarea { resize: none; }
-        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
+
 <body class="bg-background-light text-text-main font-display antialiased">
-<div class="flex flex-col min-h-screen">
-    
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b px-10 py-3 flex justify-between items-center">
-        <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
-            <span class="material-symbols-outlined text-3xl">pets</span>
-            <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
-        </a>
-        <nav class="hidden md:flex items-center gap-6">
-            <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors" href="/">Home</a>
-            <a class="text-primary font-bold text-sm" href="/reportar">Reportar</a>
-            <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors" href="/sobre">Sobre</a>
-        </nav>
-        <a href="/login" class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20">Login / Cadastrar</a>
-    </header>
+    <div class="flex flex-col min-h-screen">
 
-    <main class="flex-grow flex flex-col items-center py-8 md:py-12 px-4 md:px-8">
-        <div class="w-full max-w-[800px] flex flex-col gap-8">
-            
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <div class="animate-fade-in">
-                  {% for message in messages %}
-                    <div class="bg-blue-50 border-l-4 border-primary p-5 rounded-r-2xl shadow-sm flex items-center gap-4">
-                        <div class="bg-primary text-white rounded-full p-1 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-lg">verified</span>
-                        </div>
-                        <p class="text-primary-dark font-bold text-base">{{ message }}</p>
-                    </div>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            {% endwith %}
+        <header
+            class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b px-10 py-3 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+                <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors" href="/">Home</a>
+                <a class="text-primary font-bold text-sm" href="/reportar">Reportar</a>
+                <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors"
+                    href="/sobre">Sobre</a>
+            </nav>
+            <a href="/login"
+                class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20">Login /
+                Cadastrar</a>
+        </header>
 
-            <div class="flex flex-col gap-4">
-                <h1 class="text-3xl md:text-5xl font-black tracking-tight">Ajude um animal de rua</h1>
-                <p class="text-text-sub text-lg font-medium max-w-2xl">
-                    Preencha o formulário abaixo para alertar nossa equipe de resgate. Cada detalhe ajuda a salvar uma vida.
-                </p>
-            </div>
+        <main class="flex-grow flex flex-col items-center py-8 md:py-12 px-4 md:px-8">
+            <div class="w-full max-w-[800px] flex flex-col gap-8">
 
-            <form action="/reportar" method="POST" enctype="multipart/form-data" class="flex flex-col gap-8">
-                
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined text-lg">location_on</span>
-                        </div>
-                        <h3 class="text-lg font-bold">1. Localização</h3>
-                    </div>
-                    
-                    <div class="relative w-full rounded-xl overflow-hidden aspect-video border border-slate-100 mb-6">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31518.3583403824!2d-47.9292!3d-15.7801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1705680000000" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-2">
-                            <label class="text-sm font-bold text-slate-700 ml-1">Estado (UF)</label>
-                            <select name="estado" required class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary">
-                                <option value="" disabled selected>Selecione o estado</option>
-                                <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
-                            </select>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-sm font-bold text-slate-700 ml-1">Cidade / Bairro</label>
-                            <input type="text" name="cidade" class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary" placeholder="Ex: São Paulo, Centro">
-                        </div>
-                    </div>
-                </section>
-
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined text-lg">add_a_photo</span>
-                        </div>
-                        <h3 class="text-lg font-bold">2. Foto do Animal</h3>
-                    </div>
-                    <label class="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-10 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary transition-all group">
-                        <span class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2">cloud_upload</span>
-                        <p class="text-base font-bold">Clique para enviar a foto</p>
-                        <input type="file" name="foto_animal" class="hidden" accept="image/*">
-                    </label>
-                </section>
-
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                            <span class="material-symbols-outlined text-lg">description</span>
-                        </div>
-                        <h3 class="text-lg font-bold">3. Detalhes</h3>
-                    </div>
-                    <div class="space-y-6">
+                {% with messages = get_flashed_messages(category_filter=["reporte"]) %}
+                {% if messages %}
+                <div class="max-w-[800px] mx-auto mt-6 px-6 animate-bounce">
+                    <div
+                        class="bg-blue-50 border-l-4 border-primary p-5 rounded-r-2xl shadow-sm flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">campaign</span>
                         <div>
-                            <label class="block text-sm font-semibold mb-3">Condição Aparente</label>
-                            <div class="flex flex-wrap gap-3">
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" name="condicao" value="ferido" class="peer sr-only">
-                                    <div class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-red-50 peer-checked:text-red-600 peer-checked:border-red-200 transition-all">Ferido</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" name="condicao" value="doente" class="peer sr-only">
-                                    <div class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-orange-50 peer-checked:text-orange-600 peer-checked:border-orange-200 transition-all">Doente</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" name="condicao" value="amigavel" class="peer sr-only">
-                                    <div class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-green-50 peer-checked:text-green-600 peer-checked:border-green-200 transition-all">Amigável</div>
-                                </label>
-                            </div>
+                            <p class="text-primary-dark font-bold">Denúncia Recebida!</p>
+                            <p class="text-primary text-sm">{{ messages[0] }}</p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Espécie</label>
-                                <select name="especie" class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary">
-                                    <option value="cachorro">Cachorro</option>
-                                    <option value="gato">Gato</option>
-                                    <option value="outro">Outro</option>
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-3xl md:text-5xl font-black tracking-tight">Ajude um animal de rua</h1>
+                    <p class="text-text-sub text-lg font-medium max-w-2xl">
+                        Preencha o formulário abaixo para alertar nossa equipe de resgate. Cada detalhe ajuda a salvar
+                        uma vida.
+                    </p>
+                </div>
+
+                <form action="/reportar" method="POST" enctype="multipart/form-data" class="flex flex-col gap-8">
+
+                    <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-lg">location_on</span>
+                            </div>
+                            <h3 class="text-lg font-bold">1. Localização</h3>
+                        </div>
+
+                        <div
+                            class="relative w-full rounded-xl overflow-hidden aspect-video border border-slate-100 mb-6">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31518.3583403824!2d-47.9292!3d-15.7801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1705680000000"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700 ml-1">Estado (UF)</label>
+                                <select name="estado" required
+                                    class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary">
+                                    <option value="" disabled selected>Selecione o estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
                                 </select>
                             </div>
-                            <div>
-                                <label class="block text-sm font-semibold mb-2">Cor Principal</label>
-                                <input type="text" name="cor_principal" class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4" placeholder="Ex: Marrom, Branco...">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700 ml-1">Cidade / Bairro</label>
+                                <input type="text" name="cidade"
+                                    class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary"
+                                    placeholder="Ex: São Paulo, Centro">
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Descrição Adicional</label>
-                            <textarea name="descricao" rows="4" class="w-full rounded-xl border-gray-200 bg-gray-50 p-4" placeholder="Descreva o comportamento..."></textarea>
+                    </section>
+
+                    <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-lg">add_a_photo</span>
+                            </div>
+                            <h3 class="text-lg font-bold">2. Foto do Animal</h3>
                         </div>
+                        <label
+                            class="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-10 flex flex-col items-center justify-center text-center cursor-pointer hover:border-primary transition-all group">
+                            <span
+                                class="material-symbols-outlined text-4xl text-gray-400 group-hover:text-primary mb-2">cloud_upload</span>
+                            <p class="text-base font-bold">Clique para enviar a foto</p>
+                            <input type="file" name="foto_animal" class="hidden" accept="image/*">
+                        </label>
+                    </section>
+
+                    <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div
+                                class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-lg">description</span>
+                            </div>
+                            <h3 class="text-lg font-bold">3. Detalhes</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-3">Condição Aparente</label>
+                                <div class="flex flex-wrap gap-3">
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="condicao" value="ferido" class="peer sr-only">
+                                        <div
+                                            class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-red-50 peer-checked:text-red-600 peer-checked:border-red-200 transition-all">
+                                            Ferido</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="condicao" value="doente" class="peer sr-only">
+                                        <div
+                                            class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-orange-50 peer-checked:text-orange-600 peer-checked:border-orange-200 transition-all">
+                                            Doente</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="condicao" value="amigavel" class="peer sr-only">
+                                        <div
+                                            class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium peer-checked:bg-green-50 peer-checked:text-green-600 peer-checked:border-green-200 transition-all">
+                                            Amigável</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2">Espécie</label>
+                                    <select name="especie"
+                                        class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4 focus:ring-primary">
+                                        <option value="cachorro">Cachorro</option>
+                                        <option value="gato">Gato</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold mb-2">Cor Principal</label>
+                                    <input type="text" name="cor_principal"
+                                        class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4"
+                                        placeholder="Ex: Marrom, Branco...">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Descrição Adicional</label>
+                                <textarea name="descricao" rows="4"
+                                    class="w-full rounded-xl border-gray-200 bg-gray-50 p-4"
+                                    placeholder="Descreva o comportamento..."></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h3 class="text-base font-bold mb-4">Seus Dados (Para contato)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" name="usuario_nome"
+                                class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4" placeholder="Seu Nome">
+                            <input type="tel" name="usuario_tel"
+                                class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4" placeholder="WhatsApp">
+                        </div>
+                    </section>
+
+                    <div class="flex flex-col md:flex-row items-center gap-4 pt-4">
+                        <a href="/"
+                            class="w-full md:w-auto px-8 h-12 flex items-center justify-center font-bold text-slate-400 hover:text-slate-600 transition-colors">Cancelar</a>
+                        <button type="submit"
+                            class="w-full md:flex-1 h-14 rounded-xl bg-primary hover:bg-primary-dark text-white text-lg font-bold shadow-xl shadow-primary/20 flex items-center justify-center gap-2 transition-all">
+                            <span class="material-symbols-outlined">send</span> Enviar Reporte
+                        </button>
                     </div>
-                </section>
+                </form>
+            </div>
+        </main>
 
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <h3 class="text-base font-bold mb-4">Seus Dados (Para contato)</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="usuario_nome" class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4" placeholder="Seu Nome">
-                        <input type="tel" name="usuario_tel" class="w-full h-12 rounded-xl border-gray-200 bg-gray-50 px-4" placeholder="WhatsApp">
-                    </div>
-                </section>
-
-                <div class="flex flex-col md:flex-row items-center gap-4 pt-4">
-                    <a href="/" class="w-full md:w-auto px-8 h-12 flex items-center justify-center font-bold text-slate-400 hover:text-slate-600 transition-colors">Cancelar</a>
-                    <button type="submit" class="w-full md:flex-1 h-14 rounded-xl bg-primary hover:bg-primary-dark text-white text-lg font-bold shadow-xl shadow-primary/20 flex items-center justify-center gap-2 transition-all">
-                        <span class="material-symbols-outlined">send</span> Enviar Reporte
-                    </button>
-                </div>
-            </form>
-        </div>
-    </main>
-
-    <footer class="bg-white border-t border-slate-100 py-12 text-center">
-        <div class="flex items-center justify-center gap-2 mb-4">
-            <span class="material-symbols-outlined text-primary text-3xl">pets</span>
-            <span class="text-xl font-bold text-slate-900">PetHero</span>
-        </div>
-        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
-    </footer>
-</div>
+        <footer class="bg-white border-t border-slate-100 py-12 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">pets</span>
+                <span class="text-xl font-bold text-slate-900">PetHero</span>
+            </div>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
+        </footer>
+    </div>
 </body>
+
 </html>
