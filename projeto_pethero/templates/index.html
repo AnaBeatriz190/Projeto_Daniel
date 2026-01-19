@@ -17,83 +17,105 @@
     <style>
         body { font-family: "Plus Jakarta Sans", sans-serif; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-background-light">
+    
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b px-10 py-3 flex justify-between items-center">
-        <a href="/" class="flex items-center gap-2 text-primary">
+        <a href="/" class="flex items-center gap-2 text-primary hover:opacity-80 transition-all">
             <span class="material-symbols-outlined text-3xl">pets</span>
             <h2 class="text-xl font-bold text-slate-900">PetHero</h2>
         </a>
         <nav class="hidden md:flex items-center gap-6">
             <a class="text-primary font-bold text-sm" href="/">Home</a>
-            <a class="text-slate-600 font-medium text-sm hover:text-primary" href="/reportar">Reportar</a>
-            <a class="text-slate-600 font-medium text-sm hover:text-primary" href="/sobre">Sobre</a>
+            <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors" href="/reportar">Reportar</a>
+            <a class="text-slate-600 font-medium text-sm hover:text-primary transition-colors" href="/sobre">Sobre</a>
         </nav>
-        <a href="/login" class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20">Login / Cadastrar</a>
+        <a href="/login" class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all">
+            Login / Cadastrar
+        </a>
     </header>
 
     <main class="max-w-7xl mx-auto px-10 pb-20">
+        
         <div class="py-8">
             <div class="relative flex min-h-[480px] flex-col items-center justify-center p-12 rounded-[2.5rem] overflow-hidden shadow-xl" 
                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=2069"); background-size: cover; background-position: center;'>
                 <div class="relative z-10 text-center max-w-2xl">
-                    <span class="bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4 inline-block">Adote hoje</span>
-                    <h1 class="text-white text-6xl font-black mb-4">Encontre seu novo melhor amigo</h1>
-                    <p class="text-slate-100 text-lg">Milhares de animais esperando por você.</p>
+                    <span class="bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4 inline-block tracking-widest">Adote hoje</span>
+                    <h1 class="text-white text-6xl font-black mb-4 leading-tight">Encontre seu novo melhor amigo</h1>
+                    <p class="text-slate-100 text-lg font-medium">Conectando protetores a lares cheios de amor.</p>
                 </div>
             </div>
         </div>
 
         <div class="flex gap-3 overflow-x-auto hide-scrollbar py-4 mb-8">
-            <a href="/" class="px-6 py-2 rounded-full font-bold text-sm {{ 'bg-primary text-white shadow-md' if not request.args.get('especie') and not request.args.get('tipo') else 'bg-white border text-slate-600' }}">Todos</a>
-            <a href="/?especie=cachorro" class="px-6 py-2 rounded-full font-semibold text-sm flex items-center gap-2 {{ 'bg-primary text-white shadow-md' if request.args.get('especie') == 'cachorro' else 'bg-white border text-slate-600' }}">
-                <span class="material-symbols-outlined text-lg">sound_detection_dog_barking</span> Cachorros
+            <a href="/" class="px-6 py-2 rounded-full font-bold text-sm transition-all {{ 'bg-primary text-white shadow-md' if not request.args.get('especie') and not request.args.get('tipo') else 'bg-white border text-slate-600 hover:border-primary hover:text-primary' }}">
+                Todos
             </a>
-            <a href="/?especie=gato" class="px-6 py-2 rounded-full font-semibold text-sm flex items-center gap-2 {{ 'bg-primary text-white shadow-md' if request.args.get('especie') == 'gato' else 'bg-white border text-slate-600' }}">
-                <span class="material-symbols-outlined text-lg">cruelty_free</span> Gatos
+            <a href="/?especie=cachorro" class="px-6 py-2 rounded-full font-semibold text-sm flex items-center gap-2 transition-all {{ 'bg-primary text-white shadow-md' if request.args.get('especie') == 'cachorro' else 'bg-white border text-slate-600 hover:border-primary hover:text-primary' }}">
+                <span class="material-symbols-outlined text-lg"></span> Cachorros
             </a>
-            <a href="/?tipo=filhotes" class="px-6 py-2 rounded-full font-semibold text-sm {{ 'bg-primary text-white shadow-md' if request.args.get('tipo') == 'filhotes' else 'bg-white border text-slate-600' }}">Filhotes</a>
-            <a href="/?tipo=idosos" class="px-6 py-2 rounded-full font-semibold text-sm {{ 'bg-primary text-white shadow-md' if request.args.get('tipo') == 'idosos' else 'bg-white border text-slate-600' }}">Idosos</a>
+            <a href="/?especie=gato" class="px-6 py-2 rounded-full font-semibold text-sm flex items-center gap-2 transition-all {{ 'bg-primary text-white shadow-md' if request.args.get('especie') == 'gato' else 'bg-white border text-slate-600 hover:border-primary hover:text-primary' }}">
+                <span class="material-symbols-outlined text-lg"></span> Gatos
+            </a>
+            <a href="/?tipo=filhotes" class="px-6 py-2 rounded-full font-semibold text-sm transition-all {{ 'bg-primary text-white shadow-md' if request.args.get('tipo') == 'filhotes' else 'bg-white border text-slate-600 hover:border-primary hover:text-primary' }}">
+                Filhotes
+            </a>
+            <a href="/?tipo=idosos" class="px-6 py-2 rounded-full font-semibold text-sm transition-all {{ 'bg-primary text-white shadow-md' if request.args.get('tipo') == 'idosos' else 'bg-white border text-slate-600 hover:border-primary hover:text-primary' }}">
+                Idosos
+            </a>
         </div>
 
-        <h2 class="text-3xl font-bold mb-8">Amigos procurando um lar</h2>
+        <h2 class="text-3xl font-bold mb-8 text-slate-900">Amigos procurando um lar</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for pet in pets %}
-            <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all">
+            <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div class="relative aspect-[4/3] overflow-hidden">
-                    <img src="{{ pet.foto }}" class="w-full h-full object-cover group-hover:scale-105 transition-all">
-                    <span class="absolute top-3 left-3 bg-white/90 px-2 py-1 rounded text-[10px] font-bold uppercase">{{ pet.especie }}</span>
+                    <img src="{{ pet.foto }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ pet.nome }}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-3 left-3 bg-white/90 px-2.5 py-1 rounded-lg text-[10px] font-bold text-slate-800 flex items-center gap-1 z-10 shadow-sm uppercase">
+                        <span class="material-symbols-outlined text-sm text-primary">pets</span> {{ pet.especie }}
+                    </div>
                 </div>
                 <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">{{ pet.nome }}</h3>
-                    <p class="text-slate-500 text-xs mb-4">{{ pet.descricao }}</p>
-                    <button class="w-full py-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all">Ver Detalhes</button>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">{{ pet.nome }}</h3>
+                    <p class="text-slate-500 text-xs mb-4 line-clamp-2">{{ pet.descricao }}</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ pet.status }}</span>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
 
-        <div class="mt-20 rounded-[3rem] bg-gradient-to-r from-orange-50 to-blue-50 p-14 flex items-center gap-12 border border-white">
+        <div class="mt-20 rounded-[3rem] bg-gradient-to-r from-orange-50 to-blue-50 p-10 md:p-14 flex flex-col md:flex-row items-center gap-12 border border-white shadow-inner">
             <div class="flex-1 space-y-6">
-                <h2 class="text-5xl font-black">Não pode adotar agora?</h2>
-                <p class="text-slate-600 text-lg">Seja um voluntário ou faça uma doação.</p>
-                <div class="flex gap-4">
-                    <a href="/voluntariar" class="bg-secondary text-white px-8 py-4 rounded-2xl font-bold shadow-lg">Quero ajudar</a>
-                    <a href="/doar" class="bg-white px-8 py-4 rounded-2xl font-bold border">Doar agora</a>
+                <div class="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-widest text-[10px]">
+                    <span class="material-symbols-outlined">volunteer_activism</span> Ajude como puder
+                </div>
+                <h2 class="text-5xl font-black text-slate-900 leading-tight">Não pode adotar agora?</h2>
+                <p class="text-slate-600 text-lg">Torne-se um voluntário ou faça uma doação para apoiar nossos resgates diários.</p>
+                <div class="flex gap-4 pt-2">
+                    <a href="/voluntariar" class="bg-secondary hover:bg-orange-500 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-orange-200 transition-all">Voluntariar-se</a>
+                    <a href="/doar" class="bg-white text-slate-900 border border-slate-100 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all">Fazer Doação</a>
                 </div>
             </div>
-            <img src="https://images.unsplash.com/photo-1591768793355-74d7c836038c?q=80&w=400" class="rounded-[2rem] shadow-2xl rotate-3">
+            <div class="flex-1">
+                <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=800" 
+                     class="rounded-[2.5rem] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 w-full object-cover aspect-square">
+            </div>
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 md:px-10 text-center">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <span class="material-symbols-outlined text-primary text-3xl">pets</span>
-                <span class="text-xl font-bold text-slate-900">PetHero</span>
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-7xl mx-auto px-10 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2 text-primary font-bold">
+                <span class="material-symbols-outlined text-3xl">pets</span>
+                <span class="text-xl text-slate-900">PetHero</span>
             </div>
-            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 PetHero</p>
+            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 PetHero</p>
         </div>
     </footer>
 </body>
