@@ -41,8 +41,6 @@ def index():
     if tipo == 'filhotes': q = q.filter(Pet.idade <= 1)
     if tipo == 'idosos': q = q.filter(Pet.idade >= 8)
     return render_template('index.html', pets=q.all())
-
-# Rotas de Doação e Voluntariado (Unificadas com Flash)
 @app.route('/voluntariar', methods=['GET', 'POST'])
 def voluntariar():
     if request.method == 'POST':
@@ -60,13 +58,17 @@ def doar():
 @app.route('/recuperar', methods=['GET', 'POST'])
 def recuperar():
     if request.method == 'POST':
-        # Simula o envio
         flash("Se o e-mail estiver cadastrado, você receberá um link em breve!")
         return redirect(url_for('login'))
     return render_template('recuperar.html')
 
 @app.route('/reportar', methods=['GET', 'POST'])
-def reportar(): return render_template('reportar.html')
+def reportar():
+    if request.method == 'POST':
+        flash("A denúncia já foi feita e já estamos tomando conta dela. Obrigado por ajudar um animal de rua! 🐾")
+        return redirect(url_for('reportar'))
+    return render_template('reportar.html')
+
 @app.route('/dashboard')
 def dashboard(): return render_template('dashboard.html', pets=Pet.query.all())
 @app.route('/sobre')
